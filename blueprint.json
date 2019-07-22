@@ -16,7 +16,7 @@
         "patch": 0
       }
     },
-    "timestamp": "2019-07-22T14:13:16+10:00"
+    "timestamp": "2019-07-22T14:45:45+10:00"
   },
   "software": {
     "base": {
@@ -35,7 +35,7 @@
         "content": "#!/bin/sh\r\n. /home/engines/functions/trap.sh\r\nPID_FILE=/home/engines/run/shiny.pid \r\nexport PID_FILE\r\n\r\nshiny-server &\r\necho $! > $PID_FILE\r\nstartup_complete\r\nwait\r\nshutdown_complete\r\n"
       },
       "install": {
-        "content": "#!/bin/sh\r\nmkdir -p /home/app/shiny-server-files\r\ncp -r /srv/shiny/server/* /home/app/shiny-server-files"
+        "content": "#!/bin/sh\r\nmkdir -p /home/app/shiny-server-files\r\ncp -r /srv/shiny-server/* /home/app/shiny-server-files"
       }
     },
     "file_write_permissions": [
