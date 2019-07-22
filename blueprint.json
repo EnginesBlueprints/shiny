@@ -16,14 +16,15 @@
         "patch": 0
       }
     },
-    "timestamp": "2019-07-22T12:48:34+10:00"
+    "timestamp": "2019-07-22T14:13:16+10:00"
   },
   "software": {
     "base": {
-      "name": "rstudio",
+      "name": "shiny",
       "framework": "rstudio",
       "deployment_type": "web",
       "http_protocol": "https_only",
+      "username": "shiny",
       "memory": {
         "required": 512,
         "recommended": 1024
@@ -31,8 +32,17 @@
     },
     "scripts": {
       "start": {
-        "content": "#!/bin/sh\r\n\r\nsleep 2300"
+        "content": "#!/bin/sh\r\n. /home/engines/functions/trap.sh\r\nPID_FILE=/home/engines/run/shiny.pid \r\nexport PID_FILE\r\n\r\nshiny-server &\r\necho $! > $PID_FILE\r\nstartup_complete\r\nwait\r\nshutdown_complete\r\n"
+      },
+      "install": {
+        "content": "#!/bin/sh\r\nmkdir -p /home/app/shiny-server-files\r\ncp -r /srv/shiny/server/* /home/app/shiny-server-files"
       }
-    }
+    },
+    "file_write_permissions": [
+      {
+        "path": "/home/app/shiny-server-files",
+        "recursive": true
+      }
+    ]
   }
 }
