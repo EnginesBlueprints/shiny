@@ -15,12 +15,24 @@
         "level": "alpha",
         "patch": 0
       }
-    }
+    },
+    "timestamp": "2019-07-22T12:48:34+10:00"
   },
   "software": {
     "base": {
+      "name": "rstudio",
+      "framework": "rstudio",
       "deployment_type": "web",
-      "http_protocol": "https_and_http"
+      "http_protocol": "https_only",
+      "memory": {
+        "required": 512,
+        "recommended": 1024
+      }
+    },
+    "scripts": {
+      "start": {
+        "content": "#!/bin/sh\r\n\r\nsleep 2300"
+      }
     }
   }
 }
