@@ -16,7 +16,7 @@
         "patch": 0
       }
     },
-    "timestamp": "2019-07-23T11:01:34+10:00"
+    "timestamp": "2019-07-23T12:54:47+10:00"
   },
   "software": {
     "base": {
@@ -36,7 +36,7 @@
         "content": "#!/bin/sh\r\n. /home/engines/functions/trap.sh\r\nPID_FILE=/home/engines/run/shiny.pid \r\nexport PID_FILE\r\n\r\nshiny-server /home/app/shiny.conf &\r\necho $! > $PID_FILE\r\nstartup_complete\r\nwait\r\nshutdown_complete\r\n"
       },
       "install": {
-        "content": "#!/bin/sh\r\ncd /tmp\r\nwget http://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.9.923-amd64.deb\r\nwhoami\r\nls -Rl /etc/sudoers.d/\r\nsudo -n /usr/bin/gdebi -n /tmp/shiny-server-1.5.9.923-amd64.deb\r\nrm /tmp/shiny-server-1.5.9.923-amd64.deb"
+        "content": "#!/bin/sh\r\nR -e \"install.packages('shiny', repos='http://cran.rstudio.com/')\" \r\nR -e \"install.packages('rmarkdown')\" \r\nR -e \"install.packages(c('RJDBC', 'RJSONIO', 'rmarkdown', 'dplyr'))\"\r\ncd /tmp\r\nwget http://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.9.923-amd64.deb\r\nwhoami\r\nls -Rl /etc/sudoers.d/\r\nsudo -n /usr/bin/gdebi -n /tmp/shiny-server-1.5.9.923-amd64.deb\r\nrm /tmp/shiny-server-1.5.9.923-amd64.deb\r\n\r\nwget https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb\r\n\r\nsudo -n gdebi -n  pandoc-2.7.3-1-amd64.deb \r\nrm pandoc-2.7.3-1-amd64.deb \r\n\r\n# wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.1335-amd64.deb\r\n# gdebi rstudio-server-1.2.1335-amd64.deb\r\n# rm rstudio-server-1.2.1335-amd64.deb"
       }
     },
     "template_files": [
